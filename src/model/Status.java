@@ -1,0 +1,5 @@
+package model;
+
+public enum Status{
+	 ESPERANDO, CONSULTA, HOSPITALIZACION, SALIDASI, SALIDANO
+}
