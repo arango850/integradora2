@@ -1,44 +1,85 @@
-package model; 
+package model;
 
-public class Pet{
+public class Pet {
 
-	private String petName;
-	private int petAge;
-	private String petSpecies;
-	private String petSintomas;
+private String petName; 
 
-	//getters
-	public String getpetName(){
-		return petName;
-	}
-	public int getpetAge(){
-		return petAge;
-	}
-	public String getpetSpecies(){
-		return petSpecies;
-	}
-	public String getpetSintomas(){
-		return petSintomas;
-	}
-	//Setters
-	public void setpetName(String petName){
-		this.petName=petName;
-	}
-	public void setpetAge(int petAge){
-		this.petAge=petAge;
-	}
-	public void setpetSpecies(String petSpecies){
-		this.petSpecies=petSpecies;
-	}
-	public void setpetSintomas(String petSintomas){
-		this.petSintomas=petSintomas;
-	}
+private int petAge; 
 
-	//Constructores
-	public Pet( String petName, int petAge, String petSpecies, String petSintomas){
-		this.petName=petName;
-		this.petAge=petAge;
-		this.petSpecies=petSpecies;
-		this.petSintomas=petSintomas;
-	}
+
+
+private Especie petSpecie; 
+
+private String petSymptoms;
+
+
+private Status status;
+
+private Owner owner;
+
+private Priority priorityLevel;
+
+private Especie specie;
+
+private Veterinario aVet;
+
+
+
+public void setStatus (Status status){
+	this.status=status;
+}
+public void setaVet(Veterinario aVet) {
+
+	this.aVet = aVet;
+}
+
+
+public Owner getOwner () {
+	
+	return owner;
+}
+
+public String getPetName () {
+
+	return petName;
+
+}
+
+public Priority getPriority () {
+
+	return priorityLevel;
+} 
+
+public Status getStatus (){
+
+	return status;
+}
+
+public Veterinario getaVet () {
+
+	return aVet;
+}
+
+
+
+
+
+public Pet (String petName, int petAge, Especie specie, String petSymptoms,Owner owner ,Status status, Priority priorityLevel) {
+
+
+	this.petName=petName;
+	this.petAge=petAge;
+
+	this.specie=specie;
+	this.petSymptoms=petSymptoms;
+	this.priorityLevel=priorityLevel;
+	this.status=status;
+	this.owner=owner;
+
+
+}
+
+
+
+
 }

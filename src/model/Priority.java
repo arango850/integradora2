@@ -1,5 +1,10 @@
 package model;
 
-public enum Priority{
-	ROJO, NARANJA, AMARILLO, VERDE, AZUL
+public enum Priority {
+
+
+	
+
+	ROJO, NARANJA, AMARILLO, VERDE, AZUL;
+
 }

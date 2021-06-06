@@ -1,56 +1,72 @@
 package model;
 
-public class Veterinario{
+public class Veterinario {
 
-	private int id;
+
 	private String name;
-	private String lastName;
-	private int vetNumber;
 
-	//getters
-	public int getId(){
-		return id;
+	private String lastName;
+
+	private String  idNumber;
+
+	private String  uniqueVet;
+
+	private VetEstado vetstatus;
+
+	private int numberofpatients;
+	
+
+
+
+	public void setNumberOfPatients (int numberofpatients){
+
+		this.numberofpatients=numberofpatients;
 	}
-	public String getName(){
+
+	public void setvetstatus (VetEstado vetstatus){
+		this.vetstatus=vetstatus;
+	}
+
+
+	public int getNumberOfPatients(){
+
+		return numberofpatients;
+	}
+	public VetEstado getvetstatus (){
+		return vetstatus;
+	}
+
+	public String getName (){
+
 		return name;
+
 	}
-	public String getlastName(){
+
+	public String getlastName () {
+
 		return lastName;
 	}
-	public int getvetNumber(){
-		return vetNumber;
+
+	public String getidNumber () {
+
+		return idNumber;
+
 	}
 
-	//Setters
-	public void setId( int id){
-		this.id=id;
-	}
-	public void setName( String name){
-		this.name=name;
-	}
-	public void setlastName( String lastName){
-		this.lastName=lastName;
-	}
-	public void setvetNumber ( int vetNumber){
-		this.vetNumber=vetNumber;
-	}
-	
-	//Constructor
-	public Veterinario( int id, String name, String lastName, int vetNumber){
-		this.id=id;
-		this.name=name;
-		this.lastName=lastName;
-		this.vetNumber=vetNumber;
+
+
+
+
+	public Veterinario (String name, String lastName, String  idNumber,String  uniqueVet, VetEstado vetstatus) {
+
+		this.name= name;
+		this.lastName= lastName;
+		this.idNumber=idNumber;
+		this.uniqueVet=uniqueVet;
+		this.vetstatus=vetstatus;
+		
+
 	}
 
-	public String toString(){
-		String v="";
-
-		v += "Nombre: " + name;
-		v += "Apellido: " + lastName;
-		v += "Id " + id;
-		v += "Id de Veterinario" + vetNumber;
-		return v;
-	}
 
 }
