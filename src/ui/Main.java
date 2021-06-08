@@ -7,6 +7,8 @@ import model.Especie;
 import model.Priority;
 import model.Status;
 import model.VetEstado;
+import model.TipoHabitatReptil;
+import model.TipoJaulaAve;
 
 public class Main{
 
@@ -65,7 +67,7 @@ public void showMenu (){
 	System.out.println("Cerrando PetCenter");
 	break;
 	case 2:
-	System.out.print("En construcción");
+	mostarMenu2();
 		}
 
 
@@ -480,6 +482,169 @@ public void metodoInc1(){
 	petCenterRelation = new PetCenter(name);
 }
 
+public void mostarMenu2(){
+
+	int option=0;
+
+	System.out.print("\nBienvenido al menu de Guardería\n");
+	System.out.print("\n¿Qué quieres hacer\n"+
+		"\n(1) Registrar una mascota\n"+
+		"\n(2) Buscar Mascota\n"+
+		"\n(3) Mostar guardería\n"+
+		"\n(4) Estadística\n");
+
+	option= reader.nextInt();
+	reader.nextLine();
+
+	switch(option){
+		case 1:
+		registroMascotaG();
+		break;
+		case 2:
+		buscarMascotaG();
+		break;
+		case 3:
+		showGuarderia();
+		break;
+		case 4:
+		estadistica();
+		break;
+
+	}
+}
+
+public void registroMascotaG(){
+	
+	int alturaAve=0;
+	int peso_MAX=0;
+	int conttoy=0;
+	int plantas=0;
+	String material="";
+	int type2=0;
+	int type3=0;
+	int capacidad=0;
+	int alturaGato=0;
+	System.out.println("\nBienvenido al registro de mascotas para la guardería\n");
+	System.out.println("\nDigita el nombre de tu mascota\n");
+	String petName= reader.nextLine();
+	System.out.println("\nDigita la edad de la mascota\n");
+	int petAge= reader.nextInt();
+	reader.nextLine();
+	System.out.println("\nDigita la especie de la mascota\n"+
+		"\n(1) Gato\n"+
+		"\n(2) Perro\n"+
+		"\n(3) Conejo\n"+
+		"\n(4) Reptil\n"+
+		"\n(5) Ave\n");
+	int type= reader.nextInt();
+	reader.nextLine();
+	if(type==1){
+		System.out.println("Digita la altura");
+		alturaGato=reader.nextInt();
+	    reader.nextLine();
+		System.out.println("Digita el peso máximo");
+		 peso_MAX=reader.nextInt();
+	    reader.nextLine();
+	}else if (type==2) {
+		System.out.println("Digita la cantidad de juguetes");
+		conttoy=reader.nextInt();
+		reader.nextLine();
+	}else if (type==3) {
+		System.out.println("Digita la cantidad de plantas");
+		plantas=reader.nextInt();
+		reader.nextLine();
+	}else if (type==4) {
+		System.out.println("Digita el Material de la jaula");
+		material=reader.nextLine();
+		System.out.println("Selecciona el tipo de habitat\n"+
+			"(1) Tierra\n"+
+			"(2) Agua");
+		type2=reader.nextInt();
+		reader.nextLine();
+	}else if(type==5){
+		System.out.println("Digita la capaciad\n");
+		capacidad= reader.nextInt();
+		reader.nextLine();
+		System.out.println("Digita la altura\n");
+		alturaAve= reader.nextInt();
+		reader.nextLine();
+		System.out.println("Selecciona el tipo de jaula\n"+
+			"(1) Tierra\n"+
+			"(2) Colgada\n");
+		type3= reader.nextInt();
+		reader.nextLine();
+	}
+
+	System.out.print("\nDigita el número de dias que la mascota va estar en la guardería\n");
+	int days= reader.nextInt();
+	reader.nextLine();
+	System.out.println("\nDigita los datos del dueño\n");
+	System.out.println("\nDigita el nombre del dueño\n");
+	String ownerName= reader.nextLine();
+	System.out.println("\nDigita la identidad del dueño\n");
+	double owneridNumber= reader.nextDouble();
+	reader.nextLine();
+	System.out.println("\nDigita la dirección del dueño\n");
+	String ownerAdress= reader.nextLine();
+	System.out.println("\nDigita el número telefónico del dueño\n");
+	int ownerPhone= reader.nextInt();
+	reader.nextLine();
+
+	Owner owner2 = new Owner(ownerName,ownerPhone,ownerAdress,owneridNumber);
+
+
+	switch(type){
+		case 1:
+		petCenterRelation.addMascotaGuarderiaG(petName, petAge, Especie.GATO, days,owner2,alturaGato,peso_MAX);
+		break;
+		case 2:
+		petCenterRelation.addMascotaGuarderiaP(petName,petAge, Especie.PERRO, days,owner2,conttoy);
+		break;
+		case 3:
+		petCenterRelation.addMascotaGuarderiaC(petName, petAge, Especie.CONEJO, days,owner2,plantas);
+		break;
+		case 4:
+		switch(type2){
+			case 1:
+			petCenterRelation.addMascotaGuarderiaR(petName,petAge, Especie.REPTIL, days, owner2,material,TipoHabitatReptil.TIERRA);
+			break;
+			case 2:
+			petCenterRelation.addMascotaGuarderiaR(petName,petAge, Especie.REPTIL, days, owner2,material, TipoHabitatReptil.AGUA);
+			break;
+		}
+			
+		case 5:
+		switch (type3) {
+			case 1:
+			petCenterRelation.addMascotaGuarderiaA(petName,petAge,Especie.AVE,  days,owner2,capacidad,alturaAve, TipoJaulaAve.TIERRA);
+			break;
+			case 2:
+			petCenterRelation.addMascotaGuarderiaA(petName,petAge,Especie.AVE,  days,owner2,capacidad,alturaAve, TipoJaulaAve.COLGADA);
+			break;
+		}
+		
+	}
+	
+
+
+
+}
+public void buscarMascotaG(){
+	System.out.println("\nBienvenido al buscador de mascotas de la guardería\n");
+	System.out.println("\nDigita el nombre de la mascota\n");
+	String petName=reader.nextLine();
+	petCenterRelation.bMG(petName);
+}
+
+public void showGuarderia(){
+
+	System.out.println(petCenterRelation.mostrarGuarderia());
+}
+
+
+public void estadistica(){
+
+}
 
 
 }

@@ -23,6 +23,14 @@ private Especie specie;
 
 private Veterinario aVet;
 
+private int days;
+
+public void setDays(int days){
+	this.days=days;
+}
+public int getDays(){
+	return days;
+}
 
 
 public void setStatus (Status status){
@@ -32,7 +40,12 @@ public void setaVet(Veterinario aVet) {
 
 	this.aVet = aVet;
 }
-
+public Especie getSpecie(){
+	return specie;
+}
+public void getSpecie(Especie specie){
+	this.specie=specie;
+}
 
 public Owner getOwner () {
 	

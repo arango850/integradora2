@@ -42,6 +42,51 @@ public class PetCenter {
 
 	private int totalAzul;
 
+	private Habitat [][]matrixHabitats;
+
+	private final int minGatosFilas=0;
+
+	private final int maxGatosFilas=2;
+
+	private final int minGatosCol=0;
+
+	private final int maxGatosCol=2;
+
+	private final int minPerrosFilas=3;
+
+	private final int maxPerrosFilas=5;
+
+	private final int minPerrosCol=0;
+
+	private final int maxPerrosCol=2;
+
+	private final int minReptilesFilas=0;
+
+	private final int maxReptilesFilas=1;
+
+	private final int minReptilesCol= 3;
+
+	private final int maxReptilesCol= 4;
+
+	private final int minConejosFilas= 2;
+
+	private final int maxConejosFilas= 3;
+
+	private final int minConejosCol= 3;
+
+	private final int maxConejosCol=4;
+
+	private final int minAvesFilas= 4;
+
+	private final int maxAvesFilas= 5;
+
+	private final int minAvesCol= 3;
+
+	private final int maxAvesCol= 4;
+
+
+
+
 
 
 	
@@ -61,14 +106,23 @@ public class PetCenter {
 		veterinaryNumber=0;
 		petNumber=0;
 
+		iniciarPerro();
+		iniciarGato();
+		iniciarReptil();
+		iniciarAVe();
+		iniciarConejo();
+
 
 		petCenterName= name;
 
+		matrixHabitats= new Habitat[6][5];
 		veterinaryarray= new Veterinario [MAX_VETS];
 		petarray= new Pet [MAX_PETS];
 		noatendidos=0;
 	
 	}
+
+
 
 	
 	
@@ -529,9 +583,177 @@ public class PetCenter {
 		return noatendidos;
 	}
 
+	public void addMascotaGuarderiaG(String petName,int petAge, Especie petSpecie, int day, Owner owner2, int alturaGato, int peso_MAX){
+	boolean cent = false;
+		for (int filas = minGatosFilas;filas<=maxGatosFilas;filas++ ) {
+			for (int col= minGatosCol;col<=maxGatosCol ;col++ ) {
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.V) {
+					Pet newPet = new Pet(petName,petAge,petSpecie,"",owner2,Status.GUARDERIA,Priority.AZUL);
+					
+					matrixHabitats[filas][col].setPet(newPet);
+					matrixHabitats[filas][col].setHabitatStatus(HabitatEstado.S);
+					cent=true;
+				}
+			}
+		}
+		
+	}
+
+	public void addMascotaGuarderiaP(String petName, int petAge, Especie petSpecie,int day,Owner owner2, int conttoy){
+		boolean cent=false;
+		for (int filas= minPerrosFilas;filas<=maxPerrosFilas ;filas ++ ) {
+			for (int  col =minPerrosCol; col<=maxPerrosCol ;col++ ) {
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.V) {
+					Pet newPet= new Pet(petName,petAge,petSpecie,"",owner2,Status.GUARDERIA,Priority.AZUL);
+
+					matrixHabitats[filas][col].setPet(newPet);
+					matrixHabitats[filas][col].setHabitatStatus(HabitatEstado.S);
+					cent=true;					
+				}
+			}
+			
+		}
+	}
+
+	public void addMascotaGuarderiaC(String petName, int petAge,Especie petSpecie, int day, Owner owner2,int plantas){
+		boolean cent=false;
+		for (int filas= minConejosFilas; filas<=maxConejosFilas;filas++ ) {
+			for (int col=minConejosCol;col<=maxConejosCol ;col++ ) {
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.V) {
+					Pet newPet = new Pet(petName,petAge,petSpecie,"",owner2,Status.GUARDERIA,Priority.AZUL);
+
+					matrixHabitats[filas][col].setPet(newPet);
+					matrixHabitats[filas][col].setHabitatStatus(HabitatEstado.S);
+					cent=true;
+				}
+			}
+		}
+	}
+
+	public void addMascotaGuarderiaR(String petName,int petAge, Especie petSpecie, int day, Owner owner2,String material, TipoHabitatReptil tipoHabitatReptil){
+		boolean cent= false;
+		for (int filas=minReptilesFilas;filas<=maxReptilesFilas ;filas++ ) {
+			for (int col= minReptilesCol; col<=maxReptilesCol ;col++ ) {
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.V) {
+					Pet newPet= new Pet(petName,petAge,petSpecie,"",owner2,Status.GUARDERIA,Priority.AZUL);
+
+					matrixHabitats[filas][col].setPet(newPet);
+					matrixHabitats[filas][col].setHabitatStatus(HabitatEstado.S);
+					cent=true;
+				}
+			}
+		}
+	}
+
+	public void addMascotaGuarderiaA(String petName, int petAge, Especie petSpecie, int day, Owner owner2 ,int capacidad, int alturaAve,TipoJaulaAve tipoJaulaAve){
+		boolean cent=false;
+		for (int filas=minAvesFilas;filas<=maxAvesFilas ;filas++ ) {
+			for (int col=minAvesCol;col<=maxAvesCol ;col++ ) {
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.V) {
+					Pet newPet= new Pet(petName,petAge,petSpecie,"",owner2,Status.GUARDERIA,Priority.AZUL);
+
+					matrixHabitats[filas][col].setPet(newPet);
+					matrixHabitats[filas][col].setHabitatStatus(HabitatEstado.S);
+					cent=true;
+
+				}
+			}
+		}
+	}
 
 	
+public void bMG(String petName){
+	for (int filas =0;filas<= matrixHabitats.length ;filas++ ) {
+		for(int col=0;col<= matrixHabitats[0].length; col++)
+			if(matrixHabitats[filas][col]!=null && matrixHabitats[filas][col].getPet().getPetName().equals(petName)){
 
+				if (matrixHabitats[filas][col].getPet().getSpecie()==Especie.PERRO) {
+					System.out.println(petName+ " está en la zona de perros");
+				}else if (matrixHabitats[filas][col].getPet().getSpecie()==Especie.GATO) {
+					System.out.println(petName+" está en la zona de gatos");
+				}else if (matrixHabitats[filas][col].getPet().getSpecie()==Especie.CONEJO) {
+					System.out.println(petName+" está en la zona de conejo");
+				}else if (matrixHabitats[filas][col].getPet().getSpecie()==Especie.REPTIL) {
+					System.out.println(petName+" está en la zona de resptiles");
+				}else if (matrixHabitats[filas][col].getPet().getSpecie()==Especie.AVE) {
+					System.out.println(petName+" está en la zona de aves");
+					}
+
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.S) {
+						System.out.println("Está en un habitat de tipo Sano");	
+						}
+				if (matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.E) {
+						System.out.println("Está en un habitat de tipo enfermo");			
+								}
+				if (matrixHabitats[filas][col]==null) {
+					System.out.println("No hay mascotas en el centro");								
+												}								
+			}
+	}
+
+}
+
+public String mostrarGuarderia(){
+	String out ="";
+   	for(int filas=0;filas<matrixHabitats.length;filas++){
+			 out +="\n";
+			for(int col=0;col<matrixHabitats[0].length;col++){
+				if(matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.V){
+					out+= matrixHabitats[filas][col].getGId()+ "E";
+					out+=" - ";
+				}
+				if(matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.E){
+					out+= matrixHabitats[filas][col].getGId()+ "H";
+					out+=" - ";
+				}
+				if(matrixHabitats[filas][col].gethabitatstatus()==HabitatEstado.S){
+					out+= matrixHabitats[filas][col].getGId()+ "S";
+					out+=" - ";
+				}
+
+
+			}
+}
+return out;
+}
+
+
+public void iniciarPerro(){
+
+	for (int filas= minPerrosFilas; filas <= maxPerrosFilas ;filas ++ ) {
+		for (int col= minPerrosCol; col <= maxPerrosCol ; col++ ) {
+			matrixHabitats[filas][col]= new DogHabitat(1,1,1,HabitatEstado.V,1);
+		}
+	}
+}
+public void iniciarAVe(){
+	for (int filas= minAvesFilas; filas <= maxAvesFilas ;filas ++ ) {
+		for (int col= minAvesCol; col <= maxAvesCol ; col++ ) {
+			matrixHabitats[filas][col]= new BirdHabitat(2,0,0,0,0,TipoJaulaAve.TIERRA,HabitatEstado.V);
+		}
+	}
+}
+public void iniciarGato(){
+	for (int filas= minGatosFilas; filas <= maxGatosFilas ;filas ++ ) {
+		for (int col= minGatosCol; col <= maxGatosCol ; col++ ) {
+			matrixHabitats[filas][col]= new CatHabitat(3,0,0,HabitatEstado.V,0,0);
+		}
+	}
+}	
+public void iniciarConejo(){
+	for (int filas= minConejosFilas; filas <= maxConejosFilas ;filas ++ ) {
+		for (int col= minConejosCol; col <= maxConejosCol ; col++ ) {
+			matrixHabitats[filas][col]= new ConejoHabitat(4,1,1,1,HabitatEstado.V);
+		}
+	}
+}
+public void iniciarReptil(){
+	for (int filas= minReptilesFilas; filas <= maxReptilesFilas ;filas ++ ) {
+		for (int col= minReptilesCol; col <= maxReptilesCol ; col++ ) {
+			matrixHabitats[filas][col]= new ReptileHabitat(5,1,1,"",TipoHabitatReptil.TIERRA,HabitatEstado.V);
+		}
+	}
+}
 
 
 }
